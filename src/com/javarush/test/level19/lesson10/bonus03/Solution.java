@@ -28,5 +28,6 @@ text1, text2 могут быть пустыми
 
 public class Solution {
     public static void main(String[] args) {
+
     }
 }
