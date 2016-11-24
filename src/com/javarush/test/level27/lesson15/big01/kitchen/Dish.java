@@ -1,5 +1,7 @@
 package com.javarush.test.level27.lesson15.big01.kitchen;
 
+import java.util.Arrays;
+
 /**
  * Created by ilya on 07.04.2015.
  */
@@ -11,8 +13,7 @@ public enum Dish {
     Water(3);
 
     private int duration;
-
-    Dish(int duration) {
+    private Dish(int duration) {
         this.duration = duration;
     }
 
@@ -21,10 +22,9 @@ public enum Dish {
     }
 
     public static String allDishesToString() {
-        String dishes = "";
-        for (Dish dish : Dish.values()) {
-            dishes += dish.toString() + ", ";
-        }
-        return dishes.substring(0, dishes.length() - 2);
+        StringBuilder sb = new StringBuilder(Arrays.toString(values()));
+        sb.delete(sb.length() - 1, sb.length());
+        sb.delete(0, 1);
+        return sb.toString();
     }
 }

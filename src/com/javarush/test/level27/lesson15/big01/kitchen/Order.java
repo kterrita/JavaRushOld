@@ -10,32 +10,33 @@ import java.util.List;
 /**
  * Created by ilya on 07.04.2015.
  */
-public class Order
-{
-    public Tablet tablet;
-    public List<Dish> dishes = new ArrayList<>();
+public class Order {
+    private List<Dish> dishes;
+    private Tablet tablet;
 
-    public Order(Tablet tablet) throws IOException
-    {
-        this.tablet = tablet;
+    public Order(Tablet tablet) throws IOException {
         this.dishes = ConsoleHelper.getAllDishesForOrder();
-    }
-
-    public boolean isEmpty() {
-        return dishes.isEmpty();
-    }
-
-    public int getTotalCookingTime(){
-        int totalTime = 0;
-        for(Dish dish : dishes){
-            totalTime += dish.getDuration();
-        }
-        return  totalTime;
+        this.tablet = tablet;
     }
 
     @Override
-    public String toString()
-    {
-        return dishes.isEmpty() ? "" : "Your order: " + dishes.toString() + " of " + tablet.toString();
+    public String toString() {
+        if (dishes == null || dishes.isEmpty()) {
+            return "";
+        } else {
+            return "Your order: " + dishes.toString() + " of " + tablet;
+        }
+    }
+
+    public int getTotalCookingTime() {
+        int totalDuration = 0;
+        for (Dish dish : dishes) {
+            totalDuration += dish.getDuration();
+        }
+        return totalDuration;
+    }
+
+    public boolean isEmpty() {
+        return dishes == null || dishes.isEmpty();
     }
 }

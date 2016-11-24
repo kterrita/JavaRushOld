@@ -10,16 +10,14 @@ import java.util.Locale;
 /**
  * Created by ilya on 07.04.2015.
  */
-public class Restaurant
-{
-    public static void main(String[] args)
-    {
-        Locale.setDefault(Locale.ENGLISH);
-        Tablet tablet = new Tablet(5);
-        Cook cook = new Cook("Amigo");
-        tablet.addObserver(cook);
+public class Restaurant {
+    public static void main(String[] args) {
         Waitor waitor = new Waitor();
+        Cook cook = new Cook("Amigo");
         cook.addObserver(waitor);
+
+        Tablet tablet = new Tablet(5);
+        tablet.addObserver(cook);
         tablet.createOrder();
     }
 }

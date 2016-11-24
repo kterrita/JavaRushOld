@@ -3,8 +3,7 @@ package com.javarush.test.level27.lesson15.big01.ad;
 /**
  * Created by ilya on 21.04.2015.
  */
-public class Advertisement{
-
+public class Advertisement {
     private Object content;
     private String name;
     private long initialAmount;
@@ -18,14 +17,7 @@ public class Advertisement{
         this.initialAmount = initialAmount;
         this.hits = hits;
         this.duration = duration;
-        this.amountPerOneDisplaying = initialAmount/hits;
-    }
-
-    public void revalidate() throws UnsupportedOperationException{
-        if(hits <= 0)
-            throw new UnsupportedOperationException();
-        else
-            hits--;
+        this.amountPerOneDisplaying = initialAmount / hits;
     }
 
     public String getName() {
@@ -38,5 +30,11 @@ public class Advertisement{
 
     public long getAmountPerOneDisplaying() {
         return amountPerOneDisplaying;
+    }
+
+    public void revalidate() {
+        if (hits <= 0)
+            throw new UnsupportedOperationException();
+        hits--;
     }
 }

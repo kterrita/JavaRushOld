@@ -10,7 +10,7 @@ import java.util.Observer;
  * Created by ilya on 10.04.2015.
  */
 public class Cook extends Observable implements Observer {
-    public String name;
+    private String name;
 
     public Cook(String name) {
         this.name = name;
@@ -23,10 +23,9 @@ public class Cook extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-            Order order = (Order) arg;
-            ConsoleHelper.writeMessage("Start cooking - " + arg.toString() +
-                    ", cooking time " + order.getTotalCookingTime() + "min");
-            setChanged();
-            notifyObservers(arg);
-        }
+        Order order = (Order) arg;
+        ConsoleHelper.writeMessage("Start cooking - " + order + ", cooking time " + order.getTotalCookingTime() + "min");
+        setChanged();
+        notifyObservers(order);
+    }
 }

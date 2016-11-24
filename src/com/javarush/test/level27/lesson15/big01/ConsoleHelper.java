@@ -11,40 +11,33 @@ import java.util.List;
 /**
  * Created by ilya on 07.04.2015.
  */
-public class ConsoleHelper
-{
-    public static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+public class ConsoleHelper {
 
-    public static void writeMessage(String message){
+    private static final BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+
+    public static void writeMessage(String message) {
         System.out.println(message);
     }
 
-    public static String readString() {
-        String message = "";
-        try {
-            message = reader.readLine();
-        } catch(IOException ignored) {
-
-        }
-        return message;
+    public static String readString() throws IOException {
+        return console.readLine();
     }
 
-    public static List<Dish> getAllDishesForOrder() {
-        writeMessage("Choose the dishes " + Dish.allDishesToString());
+    public static List<Dish> getAllDishesForOrder() throws IOException {
         List<Dish> dishes = new ArrayList<>();
-
-        while(true)
-        {
-            String s1 = readString();
-            if (s1.equalsIgnoreCase("exit"))
-            {
+        String str;
+        writeMessage("Enter dish...(" + Dish.allDishesToString() + ")");
+        while (true) {
+            str = readString();
+            if ("exit".equals(str)) {
                 break;
             }
+
             try {
-                Dish dish = Dish.valueOf(s1);
-                dishes.add(dish);
-            } catch (Exception e) {
-                writeMessage(s1 + " is not detected");
+                dishes.add(Dish.valueOf(str));
+            }
+            catch (IllegalArgumentException e) {
+                ConsoleHelper.writeMessage(str + " is not detected");
             }
         }
         return dishes;
