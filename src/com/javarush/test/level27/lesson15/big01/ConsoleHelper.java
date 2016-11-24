@@ -12,32 +12,24 @@ import java.util.List;
  * Created by ilya on 07.04.2015.
  */
 public class ConsoleHelper {
-
-    private static final BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public static void writeMessage(String message) {
         System.out.println(message);
     }
 
-    public static String readString() throws IOException {
-        return console.readLine();
+    public static String readString() throws IOException{
+        return reader.readLine();
     }
 
-    public static List<Dish> getAllDishesForOrder() throws IOException {
+    public static List<Dish> getAllDishesForOrder() throws IOException{
+        String s;
         List<Dish> dishes = new ArrayList<>();
-        String str;
-        writeMessage("Enter dish...(" + Dish.allDishesToString() + ")");
-        while (true) {
-            str = readString();
-            if ("exit".equals(str)) {
-                break;
-            }
-
+        while (!(s = readString()).equalsIgnoreCase("exit")) {
             try {
-                dishes.add(Dish.valueOf(str));
-            }
-            catch (IllegalArgumentException e) {
-                ConsoleHelper.writeMessage(str + " is not detected");
+                dishes.add(Dish.valueOf(s));
+            } catch (IllegalArgumentException e) {
+                ConsoleHelper.writeMessage(s + " is not detected");
             }
         }
         return dishes;
