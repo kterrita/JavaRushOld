@@ -14,7 +14,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Created by ilya on 07.04.2015.
  */
 public class Restaurant {
-    private static final int ORDER_CREATING_INTERVAL = 100; //final сука забыл указать!!! Сразу бы прошло
+    private static final int ORDER_CREATING_INTERVAL = 100;
     private static final LinkedBlockingQueue<Order> QUEUE  = new LinkedBlockingQueue<>();
 
     public static void main(String[] args) throws InterruptedException{
